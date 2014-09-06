@@ -28,3 +28,6 @@ You'll need to compile arm-control.c with the following flags
 to link it with pigpio and curses.
 
 
+Attach the pan servo to pin 17 and the tilt servo to pin 4.
+
+
