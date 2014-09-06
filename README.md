@@ -16,10 +16,15 @@ a lot easier to use. I will also at some point make a wiki (hopefully) detailing
 just download, compile and play.
 
 This program uses pigpio- download it here
+
 abyz.co.uk/rpi/pigpio/pigpio.zip
 
+
+
 You'll need to compile arm-control.c with the following flags
+
 -lpigpio -lpthread -lrt -lncurses
+
 to link it with pigpio and curses.
 
 
