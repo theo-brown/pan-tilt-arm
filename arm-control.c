@@ -6,6 +6,8 @@
 // Pins for servos
 #define SERVOPAN 17
 #define SERVOTILT 4
+#define MAXRANGE 2500
+#define MINRANGE 500
 
 // PWM increment per loop
 #define INCREMENT 25
@@ -23,11 +25,6 @@ int display_refresh(char *welcome, int pan, int tilt)
 
     refresh();
     return 0;
-}
-
-
-int pwm_to_neutral(pan, tilt, display)
-{
 }
 
 int main()
@@ -98,29 +95,29 @@ int main()
         }
 
         // Limit the pwm values to within range - avoid damage to servo 
-        if (pwm_pan > 2000)
+        if (pwm_pan > MAXRANGE)
         {
-            pwm_pan = 2000;
+            pwm_pan = MAXRANGE;
         }
-        if (pwm_pan < 1000)
+        if (pwm_pan < MINRANGE)
         {
-            pwm_pan = 1000;
+            pwm_pan = MINRANGE;
         }
-        if (pwm_tilt > 2000)
+        if (pwm_tilt > MAXRANGE)
         {
-            pwm_tilt = 2000;
+            pwm_tilt = MAXRANGE;
         }
-        if (pwm_tilt < 1000)
+        if (pwm_tilt < MINRANGE)
         {
-            pwm_tilt = 1000;
+            pwm_tilt = MINRANGE;
         }
-        if (display_tilt > 2000)
+        if (display_tilt > MAXRANGE)
         {
-            display_tilt = 2000;
+            display_tilt = MAXRANGE;
         }
-        if (display_tilt < 1000)
+        if (display_tilt < MINRANGE)
         {
-            display_tilt = 1000;
+            display_tilt = MINRANGE;
         }
  
         // Update servo
@@ -146,8 +143,8 @@ int main()
     gpioServo(SERVOPAN, 1500);
     gpioServo(SERVOTILT, 1500);
     sleep(1);
-    gpioServo(SERVOPAN, 00);
-    gpioServo(SERVOTILT, 00);
+    gpioServo(SERVOPAN, 0);
+    gpioServo(SERVOTILT, 0);
 
     // Stop pigpio    
     gpioTerminate();
